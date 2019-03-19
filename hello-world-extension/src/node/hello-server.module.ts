@@ -3,8 +3,8 @@ import { ConnectionHandler, JsonRpcConnectionHandler } from "@theia/core/lib/com
 import { WorkspaceServer } from '../common';
 import { DefaultWorkspaceServer } from './default-workspace-server';
 
-export const loggerServerModule = new ContainerModule(bind => {
-	    bind(DefaultWorkspaceServer).toSelf().inSingletonScope();
+export default new ContainerModule(bind => {
+	bind(DefaultWorkspaceServer).toSelf().inSingletonScope();
     bind(WorkspaceServer).toService(DefaultWorkspaceServer);
     bind(ConnectionHandler).toDynamicValue(ctx =>
         new JsonRpcConnectionHandler("/services/hello", () => {
